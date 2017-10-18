@@ -42,20 +42,13 @@ mat3 transpose(const mat3 &A)
 
 	return retval;*/
 
-	return mat3{ A[0][0], A[0][1], A[0][2],
-				 A[1][0], A[1][1], A[1][2],
-				 A[2][0], A[2][1], A[2][2] };
+	return mat3{ A[0][0], A[1][0], A[2][0],
+				 A[0][1], A[1][1], A[2][1],
+				 A[0][2], A[1][2], A[2][2] };
 }
 mat3 operator*(const mat3 &A, const mat3 &B)
 {
 	mat3 retval;
-	for (int y = 0; y < 3; y++)
-		for (int x = 0; y < 3; y++)
-			for (int x = 0; x < 3; ++x)
-			{
-				retval[y][x] = dot(vec3{ A[0][x], A[1][x], A[2][x] }, B[y]);
-			}
-	return retval;
 
 	mat3 At = transpose(A);
 	
@@ -73,12 +66,7 @@ vec3 operator*(const mat3 &A, const vec3 &B)
 				 dot(At[1], B),
 				 dot(At[2], B) };
 }
-vec3 cross(const vec3 &a, const vec3 &b)
-{
-	return vec3{a.y*b.z - a.z*b.y,
-		a.z*b.x - a.x*b.z,
-		a.x*b.y - a.y*b.x };
-}
+
 float determinant(const mat3 &A)
 {
 	return dot(A[0], cross(A[1], cross(A[1], A[2])));
@@ -115,3 +103,12 @@ mat3 rotate(float deg)
 				-sin(rad), cos(rad), 0,
 						0,		0,1 };
 }
+
+vec3 & mat3::operator[](size_t idx)
+{
+	return c[idx];
+}
+
+const vec3 & mat3::operator[](size_t idx) const
+{
+	return c[idx];}

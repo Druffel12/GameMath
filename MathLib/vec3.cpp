@@ -132,7 +132,7 @@ vec3 &normalize(vec3 &v)
 }
 float dot(const vec3 &a, const vec3 &b)
 {
-	return a.x * b.x + a.y * b.y;
+	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 float dist(const vec3 &a, const vec3 &b)
 {
