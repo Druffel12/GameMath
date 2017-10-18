@@ -2,23 +2,23 @@
 #include "sfwdraw.h"
 #include "Player.h"
 #include <time.h>
+#include "mat3.h"
+#include "Transform.h"
 
 int main()
 {
 	sfw::initContext();
 
-	srand(time(NULL));
-
-	Player me;
-	me.pos = { 400,300 };
+	Transform myTransform;
+	myTransform.position = vec2{ 300,400 };
+	myTransform.dimension = vec2{ 1,1 };
 
 	while (sfw::stepContext())
 	{
-		me.update();
-		me.draw();
-		std::cout << me.pos.x << me.pos.y << std::endl;
+		DrawMatrix(myTransform.getLocalTransform(), 40);
 	}
 
 	sfw::termContext();
+
 
 }
