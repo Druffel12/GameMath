@@ -8,6 +8,8 @@ int main()
 {
 	sfw::initContext();
 
+	Player Dragon;
+
 	Transform myTransform;
 	myTransform.position = vec2{ 300,400 };
 	myTransform.dimension = vec2{ 1,1 };
@@ -21,6 +23,7 @@ int main()
 
 	while (sfw::stepContext())
 	{
+		Dragon.draw();
 		float t = sfw::getTime();
 		
 		DrawMatrix(myTransform.getGlobalTransform(), 50);

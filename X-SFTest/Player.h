@@ -1,10 +1,11 @@
 #pragma once
 #include "vec2.h"
+#include "Transform.h"
 
 class Player
 {
 public:
-	vec2 pos;
+	Transform Loc;
 
 	void update();
 	void draw();

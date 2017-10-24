@@ -2,6 +2,7 @@
 #include "sfwdraw.h"
 #include <random>
 #include <iostream>
+#include "sfwdraw.h"
 
 void Player::update()
 {
@@ -57,5 +58,5 @@ void Player::update()
 
 void Player::draw()
 {
-	sfw::drawCircle(pos.x, pos.y, 30.f);
+	sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 20);
 }
