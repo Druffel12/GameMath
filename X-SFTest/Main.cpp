@@ -3,6 +3,8 @@
 #include "Player.h"
 #include <time.h>
 #include "Transform.h"
+#include "Enemy.h"
+#include <random>
 
 int main()
 {
@@ -17,6 +19,7 @@ int main()
 	part1.bodyLoc.e_parent = &Dragon.Loc;
 	part1.bodyLoc.position = { 0,-25 };
 	part1.bodyLoc.dimension = { 1,1 };
+	
 
 	Body part2;
 	part2.bodyLoc.e_parent = &part1.bodyLoc;
@@ -55,8 +58,12 @@ int main()
 	
 
 
-
-
+	Enemy dudes[20];
+	for (int i = 0; i < 5; i++)
+	{
+		dudes[i].Enabled = true;
+	
+	}
 
 	Reticle Aim;
 	Aim.Loc.position = vec2{ 200,200 };
@@ -71,9 +78,40 @@ int main()
 	myBaby.dimension = vec2{ 1,1 };
 	myBaby.angle = 0;
 	myBaby.e_parent = &myTransform;
-
+	float timer = 0;
+	float spawnInterval;
 	while (sfw::stepContext())
 	{
+		part1.Main = Dragon;
+		part2.Main = Dragon;
+		part3.Main = Dragon;
+		part4.Main = Dragon;
+		part5.Main = Dragon;
+		part6.Main = Dragon;
+		part7.Main = Dragon;
+		part8.Main = Dragon;
+
+		timer += sfw::getDeltaTime();
+		if (timer > 1)
+		{
+			timer = 0;
+			for (int i = 0; i < 20; i++)
+			{
+				if (dudes[i].Enabled == false)
+				{
+					dudes[i].Enabled = true;
+					float posX = rand() % 800;
+					float posY = rand() % 600;
+					
+					dudes[i].myT.position = vec2{ posX, posY };
+
+					break;
+				}
+			}
+		}
+
+
+
 		Dragon.update();
 		Dragon.draw();
 		//part1.bodyLoc.angle += sfw::getDeltaTime() * 5;
@@ -97,12 +135,35 @@ int main()
 		part8.draw();
 		
 
+		for (int i = 0; i < 20; i++)
+		{
+			if (dudes[i].Enabled)
+			{
+				part1.CheckCollision(dudes[i]);
+				part2.CheckCollision(dudes[i]);
+				part3.CheckCollision(dudes[i]);
+				part4.CheckCollision(dudes[i]);
+				part5.CheckCollision(dudes[i]);
+				part6.CheckCollision(dudes[i]);
+				part7.CheckCollision(dudes[i]);
+				part8.CheckCollision(dudes[i]);
+				dudes[i].dragon = Dragon;
+				dudes[i].draw();
+				dudes[i].update();
+				if (dudes[i].CheckCollision())
+				{
+					Dragon.enabled = false;
+				}
+			}
+			
+		}
+
 		Aim.draw();
 		float t = sfw::getTime();
 		
-		DrawMatrix(Dragon.Loc.getGlobalTransform(), 50);
 		
-		DrawMatrix(myBaby.getGlobalTransform(), 50);
+		
+		//DrawMatrix(myBaby.getGlobalTransform(), 50);
 
 		myTransform.angle += sfw::getDeltaTime() ;
 		//myTransform.dimension = vec2{ sin(t) + 2, sinf(t) + 2 };

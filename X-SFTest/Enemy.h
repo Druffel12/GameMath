@@ -5,9 +5,11 @@ class Enemy
 {
 public:
 	Enemy();
+	Enemy(Player d);
 	bool Enabled;
 	vec2 dir;
 	Transform myT;
+	Player dragon;
 	float radius;
 	float speed;
 	bool CheckCollision();

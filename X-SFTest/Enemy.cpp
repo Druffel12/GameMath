@@ -1,28 +1,37 @@
 #include "Enemy.h"
 #include "sfwdraw.h"
+#include "Player.h"
 
-//bool Enemy::CheckCollision()
-//{
-//	if(dist(DragonHead.pos,myT.Pos) < myRadius + DragonHead.Radius)
-//	 Dragonhead.Enabled = false
-//		return true		,we are in collision
-//	else
-//	 return false
-//}
 
 Enemy::Enemy()
 {
+	Enabled = false;
+}
+
+Enemy::Enemy(Player d)
+{
+	Enabled = false;
+	dragon = d;
 }
 
 bool Enemy::CheckCollision()
 {
-	return false;
+	if (dist(dragon.Loc.position, myT.position) < 10 + 10)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void Enemy::update()
 {
 	//dir = norm(Player.pos - myT.Pos)
-	//myT.Pos += dir * speed;
+	dir = norm(dragon.Loc.position - myT.position);
+	myT.position += dir * 5;
+	//myT.position += dir * 5;
 }
 
 void Enemy::draw()
