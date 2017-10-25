@@ -2,6 +2,7 @@
 #include "mathutils.h"
 #include <cmath>
 #include <cfloat>
+#include "sfwdraw.h"
 
 float vec2::operator[](unsigned idx)
 {
@@ -150,4 +151,9 @@ vec2 max(const vec2 &a, const vec2 &b)
 	temp.y = max(a.y, b.y);
 
 	return temp;
+}
+
+float VectorToAngle(const vec2 & a)
+{
+	return atan2f(a.y , a.x) * 180 / PI;
 }
