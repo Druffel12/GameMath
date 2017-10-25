@@ -6,6 +6,10 @@
 #include "Transform.h"
 #include "Enemy.h"
 
+Player::Player()
+{
+}
+
 void Player::update()
 {
 	vec2 mousePos = vec2{ sfw::getMouseX(), sfw::getMouseY() };
@@ -79,11 +83,11 @@ void Reticle::draw()
 	sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 2);
 }
 
-bool Body::CheckCollision(Enemy e)
+bool Body::CheckCollision(Enemy Dragonborn)
 {
-	if (dist(e.myT.pos, bodyLoc.position) < myRadius + e.Radius)
+	if (dist(Dragonborn.myT.getGlobalTransform().c[2].xy, bodyLoc.position) < 10 + 12)
 	{
-		e.Enabled = false;
+		Dragonborn.Enabled = false;
 		return true;		//we are in collision
 	}
 	else

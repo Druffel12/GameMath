@@ -2,10 +2,12 @@
 #include "vec2.h"
 #include "Transform.h"
 #include "mat3.h"
-class Enemy;
+#include "Enemy.h"
+//class Enemy;
 class Player
 {
 public:
+	Player();
 	Transform Loc;
 
 	void update();
@@ -16,7 +18,7 @@ class Body
 {
 public:
 	Transform bodyLoc;
-	bool CheckCollision(Enemy e);
+	bool CheckCollision(Enemy Dragonborn);
 	void update();
 	void draw();
 };
