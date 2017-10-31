@@ -10,7 +10,7 @@ public:
 	float angle;
 	Transform *e_parent;
 
-	Transform();
+	Transform(/*vec2 a_pos = { 0,0 }, vec2 a_dim = { 1,1 }, float a_angle*/);
 
 	mat3 getLocalTransform() const;
 	mat3 getGlobalTransform() const;
