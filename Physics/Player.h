@@ -21,3 +21,7 @@ class Wall
 	Collider collider;
 	Sprite sprite;
 };
+
+bool doCollision(Player &player, const Wall &wall);
+bool doCollision(ball &ball, const Wall &wall);
+bool doCollision(Player &player, const Wall &wall);

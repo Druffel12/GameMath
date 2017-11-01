@@ -157,3 +157,13 @@ float VectorToAngle(const vec2 & a)
 {
 	return atan2f(a.y , a.x) * 180 / PI;
 }
+
+vec2 project(const vec2 & v, const vec2 & axis)
+{
+	return dot(v, axis) * axis;
+}
+
+vec2 reflect(const vec2 & v, const vec2 & axis)
+{
+	return 2 * project(v, axis) - v;
+}

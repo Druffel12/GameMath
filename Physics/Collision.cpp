@@ -44,3 +44,36 @@ Collision intersect_circle(const circle & A, const circle & B)
 
 	return ret;
 }
+void static_resolution(vec2 &pos, vec2 &vel, const Collision &hit)
+{
+	pos += hit.axis * hit.handedness * hit.penetrationDepth;
+
+	vel = reflect(vel, hit.axis*hit.handedness);
+}
+void dynamic_resolution(vec2 &Apos, vec2 &Avel, float Amass,
+	vec2 &Bpos, vec2 & Bvel, float Bmass,
+	const Collision & hit, float elasticity)
+{
+	// Law of Conservation
+	/*
+	mass*vel = momentum
+
+	AP + BP = 'AP + 'BP
+	*/
+	vec2 normal = hit.axis * hit.handedness;
+
+	vec2 vrel = Avel - Bvel;
+
+	dot(Rvel, normal);
+
+	float j;
+
+	-(1 + elasticity)*dot(Rvel, normal) / dot(normal, normal*(1 / Amass + 1 / Bmass));
+
+
+	Avel + (j / Amass) * normal;
+	Bvel + (j / Bmass) * normal;
+
+	Apos += normal * hit.penetrationDepth * Amass / (Amass + Bmass);
+	Bpos -= normal * hit.penetrationDepth * Bmass / (Amass + Bmass);
+}
