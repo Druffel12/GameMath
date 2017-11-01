@@ -19,10 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{577B8B21-7172-45C0-A946-5E5DCACE49B6}</ProjectGuid>
-    <RootNamespace>XSFTest</RootNamespace>
+    <ProjectGuid>{01882A25-7AB9-4704-8E65-4B8F40CA16BB}</ProjectGuid>
+    <RootNamespace>Physics</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>X-SFWTest</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,12 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib\$(PlatformShortName)\$(Configuration);$(SolutionDir)$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfw.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -101,13 +95,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib\$(PlatformShortName)\$(Configuration);$(SolutionDir)$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfw.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -117,25 +108,32 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\include\;$(SolutionDir)MathLib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib\$(PlatformShortName)\$(Configuration);$(SolutionDir)$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfw.lib;MathLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Transform.cpp" />
+    <ClInclude Include="..\X-SFTest\Rigidbody.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="DrawShapes.h" />
+    <ClInclude Include="MyGuy.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Shapes.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Transform2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Transform.h" />
+    <ClCompile Include="..\X-SFTest\DrawShapes.cpp" />
+    <ClCompile Include="..\X-SFTest\Shapes.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MyGuy.cpp" />
+    <ClCompile Include="Transform2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

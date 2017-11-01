@@ -1,7 +1,8 @@
-#pragma once
-#include "vec2.h"
-#include "Transform.h"
 
+#pragma once
+
+#include "vec2.h"
+#include "Transform2.h"
 
 class Rigidbody
 {
@@ -9,47 +10,44 @@ public:
 	float mass;
 
 
-	vec2 velocity, // speed * direction
-	accelration, // A = F/M
-	force,
-	impulse; // continous forces
+	vec2 velocity,     // speed * direction
+		acceleration,
+		force,
+		impulse;	   // continuous forces
+	float drag;
 
-	float drag,
-		angularVelocity,
+	float angularVelocity,
+		angularAcceleration,
 		torque;
-	float angulardrag;
-	
-		// the sum of all forces appplied ro an object
-
-		// A = F/M
-		// F = MA
+	float angularDrag;
 
 	Rigidbody() : velocity{ 0,0 },
-				  acceleration{ 0,0 },
-				  Force { 0,0 },
-				  impulse { 0,0 },
-				  mass(10),
-				  drag(1)
-				  angularVelocity(0),
-				  angularAcceleration(0),
-				  torque(0),
-				  angualrDrag(.25f)
+		acceleration{ 0,0 },
+		force{ 0,0 },
+		impulse{ 0,0 },
+		mass(1),
+		drag(.25f),
+		angularVelocity(0),
+		angularAcceleration(0),
+		torque(0),
+		angularDrag(.25f)
 	{
 
 	}
 
-
-	void integrate(Transform &T, float dt)
+	// verlet integration may be preferable
+	void integrate(Transform2 &T, float dt)
 	{
+		// linear motion
 		acceleration = force / mass;
-		velocity += accleration * dt + impulse / mass;
+		velocity += acceleration * dt + impulse / mass;
 		T.position += velocity * dt;
 		impulse = { 0,0 };
 		force = -velocity * drag;
-		// angular mothion (sort of)
+		// angular motion (sort of)
 		angularAcceleration = torque / mass;
-		andularVelocity += angularAcceleration * dt;
+		angularVelocity += angularAcceleration * dt;
 		T.angle += angularVelocity * dt;
-		torque = angularVelocity * angularDrag;
+		torque = -angularVelocity * angularDrag;
 	}
 };

@@ -8,6 +8,7 @@
 
 int main()
 {
+
 	sfw::initContext();
 
 	Player Dragon;
