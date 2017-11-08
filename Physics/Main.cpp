@@ -1,8 +1,6 @@
-
 #include "sfwdraw.h"
 #include "Player.h"
 #include "DrawShapes.h"
-
 
 int main()
 {

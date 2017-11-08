@@ -1,36 +1,18 @@
 #pragma once
 #include "vec2.h"
 #include  "sfwdraw.h"
-
-class Player2
+class
 {
 public:
 
-	if (sfw::getkey('I'))
-	{
-		++y
-	}
-	if (sfw::getkey('J'))
-	{
-		--x
-	}
-	if (sfw::getkey('K'))
-	{
-		--y
-	}
-	if (sfw::getkey('L'))
-	{
-		++x
-	}
-	//Rotate Left
-	if (sfw::getkey('U'))
-	{
+	int score = 0;
 
-	}
-	//Rotate Right
-	if (sfw::getkey('O'))
-	{
+	float bottomLeftX;
+	float bottomLeftY;
 
-	}
+	float topRightX;
+	float topRightY;
+
+	void draw();
 
 };

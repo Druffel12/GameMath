@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Player2.h"
 #include "Objects.h"
-#include "Sprites"
+#include "Sprites.h"
 
 int main()
 {
@@ -11,6 +11,10 @@ int main()
 	Player2 Player2;
 
 	Player1.Sprites = sfw::loadTexture()
+	Player2.Sprites = sfw::loadTexture()
 }
+while()
+{
 
+}
 
