@@ -19,13 +19,18 @@ void drawBox(vec2 pos, float w, float h)
 	drawVec(BL, TL);
 }
 
-Player::Player(vec2 pos, char up, char down, char right, char left)
+Player::Player(vec2 pos, char up, char down, char right, char left) : playerCollider(new AABB())
 {
 	transform.position = pos;
 	UP = up;
 	Down = down;
 	Right = right;
 	Left = left;
+}
+
+Player::~Player()
+{
+	delete playerCollider.box;
 }
 
 void Player::Draw()

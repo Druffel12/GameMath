@@ -1,9 +1,11 @@
 #include "Transform.h"
 #include "sfwdraw.h"
 
-Transform::Transform()
+
+
+Transform::Transform(vec2 a_pos, vec2 a_dim, float a_angle) : position(a_pos), dimension(a_dim), angle(a_angle)
 {
-	position = vec2 { 0,0 };
+	position = vec2{ 0,0 };
 	dimension = vec2{ 1,1 };
 	angle = 0;
 	e_parent = nullptr;

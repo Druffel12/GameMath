@@ -30,6 +30,8 @@ int main()
 	
 	}
 	sfw::termContext();
+
+	return 0;
 }
 
 

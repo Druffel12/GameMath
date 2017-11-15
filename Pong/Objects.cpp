@@ -7,6 +7,6 @@ void drawCircle(const circle & C)
  
 void drawLine(float BLX = 0, float BLY = 5, float BRX = 800, float BRY = 5)
 {
-	sfw::drawLine(BLX, BLY, BRX, BRY)
+	sfw::drawLine(BLX, BLY, BRX, BRY);
 }
 

@@ -1,5 +1,7 @@
 #include "Collision.h"
 #include "vec2.h"
+#include "Objects.h"
+
 Collision intersect_1D(float Amin, float Amax, float Bmin, float Bmax)
 {
 	Collision ret;
@@ -62,9 +64,7 @@ void dynamic_resolution(vec2 &Apos, vec2 &Avel, float Amass,
 
 	dot(Rvel, normal);
 
-	float j;
-
-	-(1 + elasticity)*dot(Rvel, normal) / dot(normal, normal*(1 / Amass + 1 / Bmass));
+	float j = -(1 + elasticity)*dot(Rvel, normal) / dot(normal, normal*(1 / Amass + 1 / Bmass));
 
 
 	Avel + (j / Amass) * normal;
