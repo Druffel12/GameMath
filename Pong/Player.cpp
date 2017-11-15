@@ -1,56 +1,66 @@
 #include "Player.h"
 
 
-void PlayerDraw()
+void drawVec(vec2 a, vec2 b)
 {
-	sfw::drawLine(bottomLeftX, bottomLeftY,
-		topRightX, bottomLeftY);
-
-	//left
-
-	sfw::drawLine(bottomLeftX, bottomLeftY,
-		bottomLeftX, topRightY);
-
-	//top
-	sfw::drawLine(bottomLeftX, topRightY,
-		topRightX, topRightY);
-
-	//right
-	sfw::drawLine(topRightX, topRightY,
-		topRightX, bottomLeftY);
-
-
+	sfw::drawLine(a.x, a.y, b.x, b.y);
 }
-class Player
+
+void drawBox(vec2 pos, float w, float h)
 {
-public:
-	void Move()
-	{
-		if (sfw::getKey('W'))
+	vec2 TL = {pos.x - w, pos.y + h};
+	vec2 TR = { pos.x + w, pos.y + h };
+	vec2 BL = { pos.x - w, pos.y - h };
+	vec2 BR = {pos.x + w, pos.y -h};
+
+	drawVec(TL, TR);
+	drawVec(TR, BR);
+	drawVec(BR, BL);
+	drawVec(BL, TL);
+}
+
+Player::Player(vec2 pos, char up, char down, char right, char left)
+{
+	transform.position = pos;
+	UP = up;
+	Down = down;
+	Right = right;
+	Left = left;
+}
+
+void Player::Draw()
+{
+	drawBox(transform.position, BoxHeigth, BoxWidth);
+	sprite.draw(transform);
+}
+
+void Player::Update()
+{
+		if (sfw::getKey(UP))
 		{
-			++y;
+			transform.position.y += 3.5;
 		}
-		if (sfw::getKey('A'))
+		if (sfw::getKey(Left))
 		{
-			--x;
+			transform.position.x -= 3.5;
 		}
-		if (sfw::getKey('S'))
+		if (sfw::getKey(Down))
 		{
-			--y;
+			 transform.position.y -= 3.5;
 		}
-		if (sfw::getKey('D'))
+		if (sfw::getKey(Right))
 		{
-			++x;
+			 transform.position.x += 3.5;
 		}
 		//rotate left
 		if (sfw::getKey('Q'))
 		{
-
+			transform.angle += 1;
 		}
 		//rotate right
 		if (sfw::getKey('E'))
 		{
-
+			transform.angle -= 1;	
 		}
-	}
-};
+	
+}

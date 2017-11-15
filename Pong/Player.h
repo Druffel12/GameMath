@@ -1,18 +1,56 @@
 #pragma once
 #include "vec2.h"
 #include  "sfwdraw.h"
-class 
+#include "Transform.h"
+#include "Sprites.h"
+#include "Ball.h"
+//include "collider.h"
+class Player
 {
 public:
+	Transform transform;
+	Sprite sprite;
+	//Collider collider
+	char UP;
+	char Down;
+	char Right;
+	char Left;
 
-	int score = 0;
+	Player(vec2 pos, char up, char down, char right,char left);
 
-	float bottomLeftX;
-	float bottomLeftY;
+	 float BoxWidth;
+	 float BoxHeigth;
 
-	float topRightX;
-	float topRightY;
+	void Draw();
+	void  Update();
 
-	void draw();
-
+	
 };
+
+				//Wall				Ball
+				// Ball				player
+				// Player			Player
+bool doCollision(Player P1, Ball Pong)
+{
+
+}
+
+bool doCollision(Player2 P2, Ball Pong)
+{
+
+}
+
+bool doCollision(Ball Pong, Wall Barrier)
+{
+
+}
+
+bool doCollision(Player P1, Wall Barrier)
+{
+
+}
+
+bool doCollision(Player2 P2, Wall Barrier)
+{
+
+}

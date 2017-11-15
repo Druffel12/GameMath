@@ -1,18 +1,9 @@
 #pragma once
 #include "vec2.h"
 #include  "sfwdraw.h"
-class
+
+class Player2
 {
 public:
-
-	int score = 0;
-
-	float bottomLeftX;
-	float bottomLeftY;
-
-	float topRightX;
-	float topRightY;
-
-	void draw();
 
 };
