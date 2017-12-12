@@ -10,9 +10,9 @@
 class Player2
 {
 public:
-	Transform Player2Transform;
+	Transform Transform2;
 	Sprite sprite2;
-	Collider player2Collider;
+	Collider Collider2;
 	Rigidbody player2Body;
 
 	int score = 0;

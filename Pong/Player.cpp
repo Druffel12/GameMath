@@ -70,7 +70,7 @@ void Player::Update()
 	
 }
 
-bool doCollision(Player P1, Ball Pong)
+bool doCollision(Player &P1, Ball &Pong)
 {
 	// Check if objects are colliding and get info about the collision.
 	// If the object is 2 pixels inside and to the right, we need to push it out that much.
@@ -78,7 +78,12 @@ bool doCollision(Player P1, Ball Pong)
 
 	if (hitInfo.penetrationDepth > 0)
 	{
-		static_resolution(Pong.ballTransform.position, Pong.Pong.velocity, hitInfo);
+		//static_resolution(Pong.ballTransform.position, Pong.Pong.velocity, hitInfo);
+		dynamic_resolution(P1.transform.position, P1.playerBody.velocity, P1.playerBody.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, 1);
+		
+		//Pong.speed += 1;
+		P1.playerBody.mass += 1;
+		
 		return true;
 		// dynamic_resolution(P1.transform.position, P1.playerBody, P1.playerBody.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, 1);
 	}
@@ -88,11 +93,13 @@ bool doCollision(Player P1, Ball Pong)
 
 bool doCollision(Player2 P2, Ball Pong)
 {
-	auto hitInfo = collides(P2.Player2Transform, P2.player2Collider, Pong.ballTransform, Pong.ballCollider);
+	auto hitInfo = collides(P2.Transform2, P2.Collider2, Pong.ballTransform, Pong.ballCollider);
 
 	if (hitInfo.penetrationDepth > 0)
 	{
-		static_resolution(Pong.ballTransform.position, Pong.Pong.velocity, hitInfo);
+		dynamic_resolution(P2.Transform2.position, P2.player2Body.velocity, P2.player2Body.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, 1);
+		//Pong.speed += 1;
+		
 		return true;
 
 	}
@@ -130,7 +137,7 @@ bool doCollision(Player P1, Wall Barrier)
 
 bool doCollision(Player2 P2, Wall Barrier)
 {
-	auto hitInfo = collides(Barrier.WallTransform, Barrier.WallCollider, P2.Player2Transform, Barrier.WallCollider);
+	auto hitInfo = collides(Barrier.WallTransform, Barrier.WallCollider, P2.Transform2, Barrier.WallCollider);
 
 	if (hitInfo.penetrationDepth > 0)
 	{

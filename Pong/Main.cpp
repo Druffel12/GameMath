@@ -7,10 +7,12 @@
 
 struct tester
 {
-	circle collider;
+	AABB collider;
 
 	unsigned int up;
 	unsigned int down;
+	unsigned int left;
+	unsigned int right;
 
 	unsigned color;
 
@@ -18,17 +20,32 @@ struct tester
 	{
 		if (sfw::getKey(up))
 		{
-			collider.position.y += 10;
+			collider.position.y += 3.5;
 		}
 		if (sfw::getKey(down))
 		{
-			collider.position.y -= 10;
+			collider.position.y -= 3.5;
+		}
+		if (sfw::getKey(left))
+		{
+			collider.position.x -= 3.5;
+		}
+		if (sfw::getKey(right))
+		{
+			collider.position.x += 3.5;
 		}
 	}
 
 	void draw()
 	{
-		sfw::drawCircle(collider.position.x, collider.position.y, collider.radius, 12U, color);
+		sfw::drawLine(collider.position.x + (collider.extents.x), collider.position.y + (collider.extents.y), collider.position.x + (collider.extents.x), collider.position.y - (collider.extents.y));//TR to BR
+		sfw::drawLine(collider.position.x + (collider.extents.x), collider.position.y - (collider.extents.y), collider.position.x - (collider.extents.x), collider.position.y - (collider.extents.y));//BR to BL
+		sfw::drawLine(collider.position.x - (collider.extents.x), collider.position.y - (collider.extents.y), collider.position.x - (collider.extents.x), collider.position.y + (collider.extents.y));//BL to TL
+		sfw::drawLine(collider.position.x - (collider.extents.x), collider.position.y + (collider.extents.y), collider.position.x + (collider.extents.x), collider.position.y + (collider.extents.y));//TL to TR
+
+		//Top Right Corner = position + extents
+
+		//sfw::drawCircle(collider.position.x, collider.position.y, collider.radius, 12U, color);
 	}
 };
 
@@ -48,16 +65,22 @@ int main()
 	Player2.sprite.handle = sfw::loadTextureMap("Resources/NKorea.png");
 
 	tester p1;
-	p1.collider.position = { 200,200 };
-	p1.collider.radius = 15;
+	p1.collider.position = { 100,300 };
+	p1.collider.extents = { 10,40 };
 	p1.up = 'W';
 	p1.down = 'S';
+	p1.left = 'A';
+	p1.right = 'D';
 	
 	tester p2;
-	p2.collider.position = { 210,200 };
-	p2.collider.radius = 10;
+	p2.collider.position = { 700,300 };
+	p2.collider.extents = { 10,40 };
 	p2.up = 'I';
 	p2.down = 'K';
+	p2.left = 'J';
+	p2.right = 'L';
+
+	Ball ball;
 
 	while (sfw::stepContext())
 	{
@@ -68,7 +91,7 @@ int main()
 	
 		p1.update();
 		p1.draw();
-
+		doCollision(Player1, ball);
 		p2.update();
 		p2.draw();
 	}

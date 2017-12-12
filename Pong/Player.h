@@ -37,7 +37,7 @@ public:
 				//Wall				Ball
 				// Ball				player
 				// Player			Player
-bool doCollision(Player P1, Ball Pong);
+bool doCollision(Player &P1, Ball &Pong);
 
 bool doCollision(Player2 P2, Ball Pong);
 bool doCollision(Ball Pong, Wall Barrier);

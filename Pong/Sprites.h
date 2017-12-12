@@ -25,6 +25,6 @@ public:
 		//M = translate(vec2{ 400, 300 }) * scale(vec2{ 20,20 });
 
 
-		sfw::drawTextureMatrix3(handle, 0, WHITE, M.m);
+		//sfw::drawTextureMatrix3(handle, 0, WHITE, M.m);
 	}
 };
