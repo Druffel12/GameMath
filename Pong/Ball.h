@@ -12,8 +12,8 @@ public:
 	Sprite ballSprite;
 	Collider ballCollider;
 	Rigidbody Pong;
-	Ball();
-	~Ball();
+	//Ball();
+	//~Ball();
 	
 	
 };

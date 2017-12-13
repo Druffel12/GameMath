@@ -67,8 +67,8 @@ void dynamic_resolution(vec2 &Apos, vec2 &Avel, float Amass,
 	float j = -(1 + elasticity)*dot(Rvel, normal) / dot(normal, normal*(1 / Amass + 1 / Bmass));
 
 
-	Avel + (j / Amass) * normal;
-	Bvel + (j / Bmass) * normal;
+	Avel+= (j / Amass) * normal;
+	Bvel -= (j / Bmass) * normal;
 
 	Apos += normal * hit.penetrationDepth * Amass / (Amass + Bmass);
 	Bpos -= normal * hit.penetrationDepth * Bmass / (Amass + Bmass);

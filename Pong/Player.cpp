@@ -19,7 +19,7 @@ void drawBox(vec2 pos, float w, float h)
 	drawVec(BL, TL);
 }
 
-Player::Player(vec2 pos, char up, char down, char right, char left) : playerCollider(new AABB())
+Player::Player(vec2 pos, char up, char down, char right, char left) 
 {
 	transform.position = pos;
 	UP = up;
@@ -28,34 +28,36 @@ Player::Player(vec2 pos, char up, char down, char right, char left) : playerColl
 	Left = left;
 }
 
-Player::~Player()
-{
-	delete playerCollider.box;
-}
+//Player::~Player()
+//{
+//	//delete playerCollider.box;
+//}
 
 void Player::Draw()
 {
 	drawBox(transform.position, BoxHeigth, BoxWidth);
-	sprite.draw(transform);
+	//sprite.draw(transform);
 }
 
-void Player::Update()
+void Player::Update(float dt)
 {
+	//playerBody.force = { 0,0 };
+
 		if (sfw::getKey(UP))
 		{
-			transform.position.y += 3.5;
+			playerBody.force.y += 500;
 		}
 		if (sfw::getKey(Left))
 		{
-			transform.position.x -= 3.5;
+			playerBody.force.x -= 500;
 		}
 		if (sfw::getKey(Down))
 		{
-			 transform.position.y -= 3.5;
+			playerBody.force.y -= 500;
 		}
 		if (sfw::getKey(Right))
 		{
-			 transform.position.x += 3.5;
+			playerBody.force.x += 500;
 		}
 		//rotate left
 		if (sfw::getKey('Q'))
@@ -67,6 +69,7 @@ void Player::Update()
 		{
 			transform.angle -= 1;	
 		}
+		playerBody.integrate(transform, dt);
 	
 }
 
@@ -142,6 +145,22 @@ bool doCollision(Player2 P2, Wall Barrier)
 	if (hitInfo.penetrationDepth > 0)
 	{
 		static_resolution(Barrier.WallTransform.position, Barrier.WallBody.velocity, hitInfo);
+		return true;
+
+	}
+
+	return false;
+}
+
+bool doCollision(Player &P1, Player &P2)
+{
+	auto hitInfo = collides(P1.transform, P1.playerCollider, P2.transform, P2.playerCollider);
+
+	if (hitInfo.penetrationDepth > 0)
+	{
+		//static_resolution(P2.transform.position, P2.playerBody.velocity, hitInfo);
+		dynamic_resolution(P1.transform.position, P1.playerBody.velocity, P1.playerBody.mass,
+			P2.transform.position, P2.playerBody.velocity, P2.playerBody.mass, hitInfo, 3);
 		return true;
 
 	}

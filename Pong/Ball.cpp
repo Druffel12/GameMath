@@ -4,12 +4,12 @@
 
 void drawCircle(const circle & C);
 
-Ball::Ball() : ballCollider(new AABB())
-{
-
-}
-
-Ball::~Ball()
-{
-	delete ballCollider.box;
-}
+//Ball::Ball() : ballCollider(new AABB())
+//{
+//
+//}
+//
+//Ball::~Ball()
+//{
+//	delete ballCollider.box;
+//}

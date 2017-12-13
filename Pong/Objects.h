@@ -23,4 +23,5 @@ struct AABB
 
 circle operator*(const mat3 &M, const circle &C);
 
-AABB operator*(const mat3 &M, const AABB &B); void drawCircle(const circle &C);
+AABB operator*(const mat3 &M, const AABB &B);
+void drawCircle(const circle &C);

@@ -35,7 +35,7 @@ AABB operator*(const mat3 &M, const AABB &B)
 
 	vec2 TL = { B.position.x - B.extents.x, B.position.y + B.extents.y };
 	vec2 TR = B.position + B.extents;
-	vec2 BL = B.position + B.extents;
+	vec2 BL = B.position - B.extents;
 	vec2 BR = { TR.x, BL.y };
 
 	TR = (M * vec3{ TR.x, TR.y, 1 }).xy;
@@ -55,6 +55,6 @@ AABB operator*(const mat3 &M, const AABB &B)
 
 
 
-	return AABB();
+	//return AABB();
 }
 

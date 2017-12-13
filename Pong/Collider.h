@@ -1,18 +1,21 @@
 #pragma once
-//#include "Objects.h"
+#include "Objects.h"
 #include "Transform.h"
 #include "Collision.h"
 
-class AABB;
+
 
 class Collider
 {
 public:
-	AABB *box;
+	AABB box;
 
 	AABB getGlobalBox(const Transform &t) const;
 
-	Collider(AABB *a_box) : box(a_box) {};
+	Collider(const AABB &a_box = { { 0,0 },{ .5,.5 } }) : box(a_box)
+	{
+
+	}
 };
 
 

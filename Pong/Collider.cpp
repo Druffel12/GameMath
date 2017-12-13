@@ -9,5 +9,6 @@ Collision collides(const Transform & At, const Collider & Ac,
 
 AABB Collider::getGlobalBox(const Transform & t) const
 {
-	return t.getGlobalTransform() * *box;
+	auto retval = t.getGlobalTransform() * box;
+	return retval;
 }
