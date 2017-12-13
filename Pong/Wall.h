@@ -7,6 +7,7 @@
 class Wall
 {
 public:
+	
 	Transform WallTransform;
 	Collider WallCollider;
 	Rigidbody WallBody;

@@ -59,16 +59,6 @@ void Player::Update(float dt)
 		{
 			playerBody.force.x += 500;
 		}
-		//rotate left
-		if (sfw::getKey('Q'))
-		{
-			transform.angle += 1;
-		}
-		//rotate right
-		if (sfw::getKey('E'))
-		{
-			transform.angle -= 1;	
-		}
 		playerBody.integrate(transform, dt);
 	
 }
@@ -131,6 +121,7 @@ bool doCollision(Player P1, Wall Barrier)
 	if (hitInfo.penetrationDepth > 0)
 	{
 		static_resolution(Barrier.WallTransform.position, Barrier.WallBody.velocity, hitInfo);
+		//static_resolution(P1.transform.position, P1.playerBody.velocity, hitInfo);
 		return true;
 
 	}
