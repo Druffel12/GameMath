@@ -19,5 +19,21 @@ public:
 };
 
 
+class CircleCollider
+{
+public:
+	circle cir;
+
+	circle getGlobalCircle(const Transform &t) const;
+
+	CircleCollider(const circle &a_cir = { { 0,0 },.5 } ): cir(a_cir)
+	{
+
+	}
+};
+
 Collision collides(const Transform &At, const Collider &Ac,
+	const Transform &Bt, const Collider &Bc);
+
+Collision collides(const Transform &At, const CircleCollider &Ac,
 	const Transform &Bt, const Collider &Bc);

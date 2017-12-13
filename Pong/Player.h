@@ -18,6 +18,7 @@ public:
 	Rigidbody playerBody;
 	vec2 velocity;
 	vec2 force;
+	unsigned color;
 
 	char UP;
 	char Down;
@@ -25,15 +26,13 @@ public:
 	char Left;
 
 	Player(vec2 pos, char up, char down, char right,char left);
-	//~Player();
 
 	 float BoxWidth;
 	 float BoxHeigth;
 
 	void Draw();
-	void  Update(float dt);
+	void Update(float dt);
 
-	
 };
 struct tester
 {
@@ -83,8 +82,8 @@ struct tester
 				// Ball				player
 				// Player			Player
 bool doCollision(Player &P1, Ball &Pong);
-bool doCollision(Player2 P2, Ball Pong);
-bool doCollision(Ball Pong, Wall Barrier);
-bool doCollision(Player P1, Wall Barrier);
-bool doCollision(Player2 P2, Wall Barrier);
+bool doCollision(Player2 &P2, Ball &Pong);
+bool doCollision(Ball &Pong, Wall &Barrier);
+bool doCollision(Player &P1, const Wall &Barrier);
+bool doCollision(Player2 &P2, Wall &Barrier);
 bool doCollision(Player &P1, Player &P2);

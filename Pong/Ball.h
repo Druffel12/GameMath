@@ -14,9 +14,10 @@ public:
 	Rigidbody Pong;
 	//Ball();
 	//~Ball();
-	
+
+	void update(float dt);
+	void Draw();
 	
 };
-
 
 void drawCircle(const circle &C);

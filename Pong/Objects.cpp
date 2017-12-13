@@ -1,9 +1,27 @@
 #include "Objects.h"
 #include "sfwdraw.h"
 #include <cmath>
+#include "Ball.h"
 void drawCircle(const circle & C)
 {
 	sfw::drawCircle(C.position.x, C.position.y, C.radius);
+}
+
+void Draw(const circle & C)
+{
+	sfw::drawCircle(C.position.x, C.position.y, C.radius);
+}
+
+void Ball::update(float dt)
+{
+	Pong.force += {10, 0};
+	//ballCollider.cir.position = ballTransform.getGlobalTransform().c[2].xy;
+	Pong.integrate(ballTransform, dt);
+}
+
+void Ball::Draw()
+{
+	sfw::drawCircle(ballTransform.position.x, ballTransform.position.y, (ballCollider.box.extents.x + ballCollider.box.extents.y) / 2, 12, MAGENTA);
 }
  
 void drawLine(float BLX = 0, float BLY = 5, float BRX = 800, float BRY = 5)

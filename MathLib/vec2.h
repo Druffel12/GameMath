@@ -40,3 +40,5 @@ float VectorToAngle(const vec2 &a);
 
 vec2 project(const vec2 &v, const vec2 &axis);
 vec2 reflect(const vec2 &v, const vec2 &axis);
+//float snap(float s, float v, float l);
+vec2 snap(const vec2 &a_min, const vec2 &a_val, const vec2 &a_max);
