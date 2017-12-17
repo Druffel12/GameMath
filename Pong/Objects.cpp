@@ -14,7 +14,7 @@ void Draw(const circle & C)
 
 void Ball::update(float dt)
 {
-	Pong.force += {10, 0};
+	Pong.force += {0, 0};
 	//ballCollider.cir.position = ballTransform.getGlobalTransform().c[2].xy;
 	Pong.integrate(ballTransform, dt);
 }

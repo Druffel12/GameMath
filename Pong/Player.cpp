@@ -47,19 +47,19 @@ void Player::Update(float dt)
 
 		if (sfw::getKey(UP))
 		{
-			playerBody.force.y += 500;
+			playerBody.force.y += 100;
 		}
 		if (sfw::getKey(Left))
 		{
-			playerBody.force.x -= 500;
+			playerBody.force.x -= 100;
 		}
 		if (sfw::getKey(Down))
 		{
-			playerBody.force.y -= 500;
+			playerBody.force.y -= 100;
 		}
 		if (sfw::getKey(Right))
 		{
-			playerBody.force.x += 500;
+			playerBody.force.x += 100;
 		}
 		playerBody.integrate(transform, dt);
 
@@ -80,7 +80,7 @@ bool doCollision(Player &P1, Ball &Pong)
 	if (hitInfo.penetrationDepth > 0)
 	{
 		//static_resolution(Pong.ballTransform.position, Pong.Pong.velocity, hitInfo);
-		dynamic_resolution(P1.transform.position, P1.playerBody.velocity, P1.playerBody.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, 1.3);
+		dynamic_resolution(P1.transform.position, P1.playerBody.velocity, P1.playerBody.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, .5);
 
 		//Pong.speed += 1;
 		
@@ -97,7 +97,7 @@ bool doCollision(Player2 &P2, Ball &Pong)
 
 	if (hitInfo.penetrationDepth > 0)
 	{
-		dynamic_resolution(P2.Transform2.position, P2.player2Body.velocity, P2.player2Body.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, 1.3);
+		dynamic_resolution(P2.Transform2.position, P2.player2Body.velocity, P2.player2Body.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, 1);
 		//Pong.speed += 1;
 		
 		return true;
@@ -113,7 +113,7 @@ bool doCollision(Ball &Pong, Wall &Barrier)
 
 	if (hitInfo.penetrationDepth > 0)
 	{
-		static_resolution(Pong.ballTransform.position, Pong.Pong.velocity, hitInfo,1);
+		static_resolution(Pong.ballTransform.position, Pong.Pong.velocity, hitInfo,.5);
 		return true;
 
 	}
@@ -144,7 +144,7 @@ bool doCollision(Player2 &P2, const Wall &Barrier)
 
 	if (hitInfo.penetrationDepth > 0)
 	{
-		static_resolution(P2.Transform2.position, P2.player2Body.velocity, hitInfo,1);
+		static_resolution(P2.Transform2.position, P2.player2Body.velocity, hitInfo,.5);
 		return true;
 
 	}
@@ -160,7 +160,7 @@ bool doCollision(Player &P1, Player &P2)
 	{
 		//static_resolution(P2.transform.position, P2.playerBody.velocity, hitInfo);
 		dynamic_resolution(P1.transform.position, P1.playerBody.velocity, P1.playerBody.mass,
-			P2.transform.position, P2.playerBody.velocity, P2.playerBody.mass, hitInfo, 1.3);
+			P2.transform.position, P2.playerBody.velocity, P2.playerBody.mass, hitInfo, .5);
 		return true;
 
 	}

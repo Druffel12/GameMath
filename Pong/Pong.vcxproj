@@ -135,6 +135,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player2.h" />
     <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Wall.h" />
