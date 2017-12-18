@@ -67,7 +67,7 @@ int main()
 	//ball.ballCollider.box.extents = { 50 , 50 };
 
 
-	int Winner = 0;
+	int Winner =0;
 
 	while (sfw::stepContext())
 	{
@@ -121,7 +121,7 @@ int main()
 		if (doCollision(ball, Barrier3))
 		{
 			ball.ballTransform.position = { 400, 300 };
-			ball.Pong.velocity = { 0,0 };
+			ball.Pong.velocity = { 0,4000 };
 			ball.Pong.acceleration = { 0, 0 };
 			ball.Pong.angularAcceleration = 0;
 				score2 += 1;
@@ -138,7 +138,7 @@ int main()
 		if (doCollision(ball, Barrier4))
 		{
 			ball.ballTransform.position = { 400, 300 };
-			ball.Pong.velocity = { 0,0 };
+			ball.Pong.velocity = { -10,-20 };
 			ball.Pong.acceleration = { 0, 0 };
 			ball.Pong.angularAcceleration = 0;
 				score1 += 1;

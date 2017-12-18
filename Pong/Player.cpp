@@ -47,19 +47,19 @@ void Player::Update(float dt)
 
 		if (sfw::getKey(UP))
 		{
-			playerBody.force.y += 100;
+			playerBody.force.y += 500;
 		}
 		if (sfw::getKey(Left))
 		{
-			playerBody.force.x -= 100;
+			playerBody.force.x -= 500;
 		}
 		if (sfw::getKey(Down))
 		{
-			playerBody.force.y -= 100;
+			playerBody.force.y -= 500;
 		}
 		if (sfw::getKey(Right))
 		{
-			playerBody.force.x += 100;
+			playerBody.force.x += 500;
 		}
 		playerBody.integrate(transform, dt);
 
@@ -79,8 +79,9 @@ bool doCollision(Player &P1, Ball &Pong)
 
 	if (hitInfo.penetrationDepth > 0)
 	{
+		//hitInfo.handedness *= -1;
 		//static_resolution(Pong.ballTransform.position, Pong.Pong.velocity, hitInfo);
-		dynamic_resolution(P1.transform.position, P1.playerBody.velocity, P1.playerBody.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, .5);
+		dynamic_resolution( Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, P1.transform.position, P1.playerBody.velocity, P1.playerBody.mass, hitInfo, 1.3);
 
 		//Pong.speed += 1;
 		
@@ -97,7 +98,8 @@ bool doCollision(Player2 &P2, Ball &Pong)
 
 	if (hitInfo.penetrationDepth > 0)
 	{
-		dynamic_resolution(P2.Transform2.position, P2.player2Body.velocity, P2.player2Body.mass, Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, hitInfo, 1);
+		//hitInfo.handedness *= -1;
+		dynamic_resolution( Pong.ballTransform.position, Pong.Pong.velocity, Pong.Pong.mass, P2.Transform2.position, P2.player2Body.velocity, P2.player2Body.mass, hitInfo, 1.3);
 		//Pong.speed += 1;
 		
 		return true;

@@ -49,19 +49,19 @@ struct tester
 	{
 		if (sfw::getKey(up))
 		{
-			collider.position.y += 3.5;
+			collider.position.y += 100;
 		}
 		if (sfw::getKey(down))
 		{
-			collider.position.y -= 3.5;
+			collider.position.y -= 100;
 		}
 		if (sfw::getKey(left))
 		{
-			collider.position.x -= 3.5;
+			collider.position.x -= 100;
 		}
 		if (sfw::getKey(right))
 		{
-			collider.position.x += 3.5;
+			collider.position.x += 100;
 		}
 	}
 
